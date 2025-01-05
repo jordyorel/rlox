@@ -1,17 +1,18 @@
 
-use rlox::Chunk;
+use rlox::Chunk; 
+use rlox::OpCode;
+mod debug;
+
+
 fn main() {
     let mut chunk = Chunk::new();
 
-    for i in 0..255 {
-        chunk.write_chunk(i); // Example bytecode
-    }
+    chunk.write_chunk(OpCode::OpADD as u8);
+    chunk.write_chunk(OpCode::OpRETURN as u8);
 
-    // for i in 0..chunk.count {
-    //     println!("Chunk contains: {:?}", chunk.code[i]);
-    // }
+    // Disassemble the chunk (first pass)
+    debug::disassemble_chunk(&chunk, "test chunk");
 
-    println!("Chunk count: {}", chunk.count);
-    println!("Code length: {}", chunk.code.len());
-    println!("Code capcity: {}", chunk.code.capacity());
+
+
 }
